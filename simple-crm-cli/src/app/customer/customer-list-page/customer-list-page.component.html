@@ -1,4 +1,12 @@
 <mat-card>
+  <mat-card-title fxLayout="row" fxLayoutAlign="space-between center">
+    <span>Customers</span>
+    <span fxFlex> </span>
+    <button class="addButton" mat-mini-fab color="primary" (click)="addCustomer()">
+      <mat-icon aria-label="Add Customer">add</mat-icon>
+    </button>
+  </mat-card-title>
+
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">
       <!-- The matColumnDef value above must match a name in the displayColumns array  -->
