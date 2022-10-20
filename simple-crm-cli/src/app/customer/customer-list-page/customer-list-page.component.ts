@@ -39,7 +39,7 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
   }
 
   viewDetail(cust: Customer){
-    this.router.navigate(['/customer', cust.id]);
+    this.router.navigate(['/customers', cust.id]);
   }
 
   addCustomer() {
