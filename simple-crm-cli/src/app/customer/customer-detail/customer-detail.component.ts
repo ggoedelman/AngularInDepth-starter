@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from '../customer.model';
 import { CustomerService } from '../customer.service';
@@ -18,6 +19,7 @@ export class CustomerDetailComponent implements OnInit {
     private fb: FormBuilder,
     private custSvc: CustomerService,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     this.customerId = +this.route.snapshot.params['id'];
     this.createForm();
@@ -41,4 +43,17 @@ export class CustomerDetailComponent implements OnInit {
       preferredContactMethod: ['email']
     });
   }
+
+  public save() {
+    if (!this.editDetailForm.valid) { this.editDetailForm.markAllAsTouched(); return; }
+    const customer = { ...this.customer, ...this.editDetailForm.value };
+    this.custSvc.update(customer).subscribe({
+       next: (result) => {
+        this.snackBar.open('Customer saved', 'OK');
+       },
+       error: (err) => {
+        this.snackBar.open('Customer did not save', 'OK');
+       }
+    });  //  <-- NEW
+ }
 }
