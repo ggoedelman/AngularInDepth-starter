@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Customer } from '../customer.model';
 
@@ -18,10 +18,10 @@ export class CustomerCreateDialogComponent implements OnInit {
     ) {
       this.dialogRef,
       this.detailForm = this.fb.group({
-        firstName: [''], // target form field name is the property name
-        lastName: [''],
+        firstName: ['', Validators.required], // target form field name is the property name
+        lastName: ['', Validators.required],
         phoneNumber: [''],
-        emailAddress: [''],
+        emailAddress: ['', [Validators.required, Validators.email]],
         preferredContactMethod: ['email'] // value in the quotes is the initial value
      });
      if(!!data){
@@ -37,8 +37,23 @@ export class CustomerCreateDialogComponent implements OnInit {
   }
 
   save(){
-    const customer = {};
-    this.dialogRef.close(customer);
+    if(!this.detailForm.valid){
+      this.detailForm.markAllAsTouched();
+      return;
+    } else {
+      const data = {
+        customerId: 3,
+        firstName: 'John',
+        lastName: 'Doe'
+      };
+
+      let customer = {
+          ...data, // copies in all 'data' first
+          ...this.detailForm.value // overwrites with any that exist from the form
+      };
+
+      this.dialogRef.close(customer);
+    }
   }
 
 }
