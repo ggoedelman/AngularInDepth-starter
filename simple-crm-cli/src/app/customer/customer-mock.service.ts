@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
+import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
 
@@ -32,7 +33,7 @@ export class CustomerMockService extends CustomerService {
           lastContactDate: new Date().toISOString()
         },
         {
-          id: 1,
+          id: 2,
           firstName: 'Bob',
           lastName: 'Jones',
           phoneNumber: '314-555-9873',
@@ -63,5 +64,12 @@ export class CustomerMockService extends CustomerService {
     //replace current matching customer from the list with this updated customer.
     localStorage.setItem('customers', JSON.stringify(this.customers));
     return of(customer);
+  }
+
+  override get(customerId: number): Observable<Customer> {
+    // Note: if a string "1" was passed into here, this would not match customer with id 1.
+    // With === the type on both sides must be the same.  "1" is not equal to 1.
+    const item = this.customers.find(x => x.id === customerId) as Customer;
+    return of(item);
   }
 }
