@@ -22,4 +22,8 @@ export class CustomerService {
   // example url: /api/customer/5
   return this.http.put<Customer>(`/api/customer/${customer.id}`, customer);
   }
+
+  get(customerId: number): Observable<Customer> {
+    return this.http.get<Customer>('/api/customer/' + customerId);
+  }
 }
