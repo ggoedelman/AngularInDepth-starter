@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { CustomerMockService } from './customer-mock.service';
 import { Customer } from './customer.model';
 
-describe('CustomerMockService', () => {
+fdescribe('CustomerMockService', () => {
   let service: CustomerMockService;
 
   beforeEach(() => {
@@ -45,6 +45,15 @@ describe('CustomerMockService', () => {
     });
   });
 
+  it('should be true', (done) => {
+    service.get(1).subscribe({
+      next: (cust: Customer) => {
+        expect(cust.optInNewsLetter).toEqual(true);
+        done();
+      }
+    });
+  });
+
   it('should be Bob', (done) => {
     service.get(2).subscribe({
       next: (cust: Customer) => {
@@ -67,6 +76,15 @@ describe('CustomerMockService', () => {
     service.get(2).subscribe({
       next: (cust: Customer) => {
         expect(cust.preferredContactMethod).toEqual('email');
+        done();
+      }
+    });
+  });
+
+  it('should be true', (done) => {
+    service.get(2).subscribe({
+      next: (cust: Customer) => {
+        expect(cust.optInNewsLetter).toEqual(true);
         done();
       }
     });
