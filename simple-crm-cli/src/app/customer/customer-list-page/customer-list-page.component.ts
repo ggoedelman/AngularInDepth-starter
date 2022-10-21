@@ -15,7 +15,7 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
 
   customers: Customer[] = [];
   dataSource!: MatTableDataSource<Customer>;// The ! tells Angular you know it may be used before it is set
-  displayColumns = ['type', 'name', 'phoneNumber', 'emailAddress', 'status', 'actions'];
+  displayColumns = ['type', 'name', 'phoneNumber', 'emailAddress', 'status', 'lastContactDate', 'actions'];
 
   constructor(
     private custSvc: CustomerService,
