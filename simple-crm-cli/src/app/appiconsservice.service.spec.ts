@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppiconsserviceService } from './appiconsservice.service';
+import { AppIconsService } from './appiconsservice.service';
 
-describe('AppiconsserviceService', () => {
-  let service: AppiconsserviceService;
+describe('AppIconsService', () => {
+  let service: AppIconsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AppiconsserviceService);
+    service = TestBed.inject(AppIconsService);
   });
 
   it('should be created', () => {
