@@ -1,5 +1,6 @@
 export type CustomerType = 'none' | 'personal' | 'business' | number | undefined;
 export type InteractionMethod = 'none' | 'phone' | 'email';
+export type CustomerStatusType = 'Initial' | 'Prospect' | 'Purchased'
 
   export interface Customer {
     id: number;
@@ -11,5 +12,5 @@ export type InteractionMethod = 'none' | 'phone' | 'email';
     emailAddress: string;
     lastContactDate: string;
     preferredContactMethod: InteractionMethod;
-    status: string;
+    status: CustomerStatusType;
   }

@@ -11,6 +11,7 @@ import  {MatListModule } from '@angular/material/list';
 import { CustomerModule } from './customer/customer.module';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AppIconsService } from './appiconsservice.service';
 
 @NgModule({
   declarations: [
@@ -31,4 +32,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(iconService: AppIconsService) {}
+}

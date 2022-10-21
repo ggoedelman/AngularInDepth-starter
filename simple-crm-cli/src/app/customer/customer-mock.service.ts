@@ -28,7 +28,7 @@ export class CustomerMockService extends CustomerService {
           optInNewsLetter: true,
           type: 'business',
           emailAddress: 'john@nexulacademy.com',
-          status: 'Prospect',
+          status: 'Initial',
           preferredContactMethod: 'phone',
           lastContactDate: new Date().toISOString()
         },
