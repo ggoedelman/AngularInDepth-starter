@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
+import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-customer-list-page.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: ':id',
-        component: CustomerDetailComponent
+        component: CustomerListPageComponent
       }
     ]
   }

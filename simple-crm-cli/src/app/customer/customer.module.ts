@@ -20,6 +20,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { StatusIconPipe } from './status-icon.pipe';
+import { MatListModule } from '@angular/material/list';
+import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-customer-list-page.component';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { StatusIconPipe } from './status-icon.pipe';
     CustomerListPageComponent,
     CustomerCreateDialogComponent,
     CustomerDetailComponent,
-    StatusIconPipe
+    StatusIconPipe,
+    AltCustomerListPageComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +46,8 @@ import { StatusIconPipe } from './status-icon.pipe';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule
   ],
   providers: [
     {

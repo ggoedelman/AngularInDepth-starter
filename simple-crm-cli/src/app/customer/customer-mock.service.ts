@@ -5,6 +5,7 @@ import { of } from 'rxjs/internal/observable/of';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
+import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-customer-list-page.component';
 
 @Injectable({
   providedIn: 'root'

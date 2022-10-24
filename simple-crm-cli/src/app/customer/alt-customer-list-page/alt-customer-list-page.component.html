@@ -1,0 +1,50 @@
+<mat-card>
+<mat-card-title fxLayout="row" fxLayoutAlign="space-between center">
+  <span>Customers</span>
+  <span fxFlex> </span>
+  <button class="addButton" mat-mini-fab color="primary" (click)="addCustomer()">
+    <mat-icon aria-label="Add Customer">add</mat-icon>
+  </button>
+</mat-card-title>
+
+<mat-list *ngFor="let customer of customers$ | async">
+  <mat-list-item matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell>
+        <button mat-icon-button (click)="viewDetail(customer)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+  </mat-list-item>
+
+  <mat-list-item  matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell> {{customer.type}} </td>
+  </mat-list-item>
+
+  <mat-list-item matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell> {{customer.firstName}} {{customer.lastName}} </td>
+  </mat-list-item>
+
+  <mat-list-item matColumnDef="phoneNumber">
+    <th mat-header-cell *matHeaderCellDef> Email Address </th>
+    <td mat-cell> {{customer.emailAddress}} </td>
+  </mat-list-item>
+
+  <mat-list-item matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell>
+        <mat-icon [svgIcon]="customer.status | statusIcon"></mat-icon>
+      </td>
+  </mat-list-item>
+
+  <mat-list-item matColumnDef="lastContactDate">
+    <th mat-header-cell *matHeaderCellDef> Last Contact Date </th>
+    <td mat-cell> {{customer.lastContactDate | date:'MMM d, yyyy'}} </td>
+  </mat-list-item>
+
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+</mat-list>
+</mat-card>

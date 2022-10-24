@@ -5,6 +5,14 @@ import { CustomerService } from '../customer.service';
 import { CustomerCreateDialogComponent } from '../customer-create-dialog/customer-create-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
+import { FormControl } from '@angular/forms';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { startWith } from 'rxjs/internal/operators/startWith';
+import { shareReplay } from 'rxjs/internal/operators/shareReplay';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 
 @Component({
   selector: 'app-customer-list-page',
@@ -13,21 +21,23 @@ import { Router } from '@angular/router';
 })
 export class CustomerListPageComponent implements OnInit, OnChanges {
 
-  customers: Customer[] = [];
-  dataSource!: MatTableDataSource<Customer>;// The ! tells Angular you know it may be used before it is set
+  customers$: Observable<Customer[]>;
   displayColumns = ['type', 'name', 'phoneNumber', 'emailAddress', 'status', 'lastContactDate', 'actions'];
+  filterInput = new FormControl('');
+  reload$ = new BehaviorSubject<number>(0);
 
   constructor(
     private custSvc: CustomerService,
     public dialog: MatDialog,
     private router: Router
     ) {
-    this.custSvc.search('').subscribe({
-      next: (list) => {
-        this.customers = list;
-      }
-    });
-    this.dataSource = new MatTableDataSource(this.customers);
+    const valueChanges = this.filterInput.valueChanges.pipe(startWith(''));
+    this.customers$ = combineLatest([valueChanges, this.reload$]).pipe(
+      debounceTime(700),
+      switchMap(([term, _]) => this.custSvc.search(term || '')),
+      shareReplay(),
+    );
+    this.reload$.next(this.reload$.value + 1);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,5 +61,9 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
     });
+  }
+
+  search(){
+    this.reload$.next(this.reload$.value + 1);
   }
 }
