@@ -51,7 +51,12 @@ export class CustomerMockService extends CustomerService {
 
   override search(term: string): Observable<Customer[]>{
     //TODO: only return the ones with a term in a searchable field (name, email, ?)
-    return of(this.customers);
+    const result = this.customers.filter(x =>
+      (x.firstName.includes(term) || x.lastName.includes(term)) ||
+      x.phoneNumber.includes(term) ||
+      x.emailAddress.includes(term)
+      );
+    return of(result);
   }
 
   override insert(customer: Customer): Observable<Customer> {
