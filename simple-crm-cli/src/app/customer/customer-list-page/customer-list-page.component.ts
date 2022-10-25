@@ -13,6 +13,7 @@ import { startWith } from 'rxjs/internal/operators/startWith';
 import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { combineLatest } from 'rxjs/internal/observable/combineLatest';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'app-customer-list-page',
@@ -22,6 +23,7 @@ import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 export class CustomerListPageComponent implements OnInit, OnChanges {
 
   customers$: Observable<Customer[]>;
+  onDestroy$ = new BehaviorSubject<boolean>(false);
   displayColumns = ['type', 'name', 'phoneNumber', 'emailAddress', 'status', 'lastContactDate', 'actions'];
   filterInput = new FormControl('');
   reload$ = new BehaviorSubject<number>(0);
@@ -38,6 +40,9 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
       shareReplay(),
     );
     this.reload$.next(this.reload$.value + 1);
+    this.customers$.pipe(takeUntil(this.onDestroy$)).subscribe({
+      next: () => {}
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,6 +51,10 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     //this.dataSource = new MatTableDataSource(this.customers);
+  }
+
+  ngOnDestroy(): void{
+    this.onDestroy$.next(true);
   }
 
   viewDetail(cust: Customer){

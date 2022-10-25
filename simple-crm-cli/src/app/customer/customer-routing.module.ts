@@ -3,19 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-customer-list-page.component';
+import { AuthenticatedGuard } from '../authenticated.guard';
 
 const routes: Routes = [
   {
     path: 'customers',
     pathMatch: 'full',
-    component: CustomerListPageComponent
+    component: CustomerListPageComponent,
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: 'customers',
     children: [
       {
         path: ':id',
-        component: CustomerListPageComponent
+        pathMatch: 'full',
+        component: CustomerDetailComponent,
+        canActivate: [AuthenticatedGuard]
       }
     ]
   }
