@@ -13,11 +13,19 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppIconsService } from './appiconsservice.service';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { LoginComponent } from './login/login/login.component';
+import { RegistrationComponent } from './registration/registration/registration.component';
+import { SigninGoogleComponent } from './signin-google/signin-google/signin-google.component';
+import { SigninMicrosoftComponent } from './signin-microsoft/signin-microsoft/signin-microsoft.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    LoginComponent,
+    RegistrationComponent,
+    SigninGoogleComponent,
+    SigninMicrosoftComponent
   ],
   imports: [
     BrowserModule,
