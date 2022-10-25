@@ -12,10 +12,12 @@ import { CustomerModule } from './customer/customer.module';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppIconsService } from './appiconsservice.service';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     BrowserModule,
