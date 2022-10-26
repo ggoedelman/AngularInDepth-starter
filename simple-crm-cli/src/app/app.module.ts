@@ -17,6 +17,9 @@ import { LoginComponent } from './account/login/login.component'
 import { RegistrationComponent } from './account/registration/registration.component';
 import { SigninGoogleComponent } from './account/signin-google/signin-google.component';
 import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-microsoft.component';
+import { StoreModule } from '@ngrx/store';
+import { layoutFeatureKey, layoutReducer } from './store/layout.store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,12 @@ import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-micr
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
+    StoreModule.forFeature(layoutFeatureKey, layoutReducer),
+    StoreDevtoolsModule.instrument({
+      name: 'Nexul Academy - Simple CRM'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
