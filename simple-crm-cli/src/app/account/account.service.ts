@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { map, Observable, pipe } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { environment } from 'src/environments/environment';
-import { UserSummaryViewModel } from './account.models';
+import { MicrosoftOptions, UserSummaryViewModel } from './account.models';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class AccountService {
 
   login(): void{
     localStorage.removeItem('currentUser');
-    this.cachedUser.next();
+    //this.cachedUser.next();
     this.router.createUrlTree(['./account/login'])
   }
 
@@ -96,6 +96,16 @@ export class AccountService {
 
   public isAnonymous(): Observable<boolean>{
     return this.cachedUser.pipe(map(x => x.name === 'Anonymous'));
+  }
+
+  loginMicrosoft(code: string, state: string): Observable<UserSummaryViewModel> {
+    const body = {accessToken: code, state, baseHref: this.platformLocation.getBaseHrefFromDOM};
+    return this.http.post<UserSummaryViewModel>(this.baseUrl + "external/microsoft", body);
+  }
+
+  loginGoogle(code: string, state: string): Observable<UserSummaryViewModel> {
+    const body = {accessToken: code, state, baseHref: this.platformLocation.getBaseHrefFromDOM};
+    return this.http.post<UserSummaryViewModel>(this.baseUrl + "external/google", body);
   }
 
   // TODO: add isAnonymous property get here (see property get 'user()' above),

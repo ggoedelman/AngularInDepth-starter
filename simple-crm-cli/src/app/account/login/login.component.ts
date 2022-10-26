@@ -1,7 +1,7 @@
 import { PlatformLocation } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { AccountService } from '../account.service';
 })
 export class LoginComponent {
    loginType: 'undecided' | 'password' | 'microsoft' | 'google' = 'undecided';
+   loginForm: FormGroup;
    currentUser: Observable<UserSummaryViewModel>;
 
 constructor(
@@ -53,7 +54,7 @@ this.accountService.loginMicrosoftOptions().subscribe((opts) => {
       this.platformLocation.getBaseHrefFromDOM() +
       'account/signin-microsoft',
   };
-  console.log(options.redirect_uri);
+  //console.log(options.redirect_uri);
   let params = new HttpParams();
   for (const key of Object.keys(options)) {
     params = params.set(key, options[key]); // encodes values automatically.

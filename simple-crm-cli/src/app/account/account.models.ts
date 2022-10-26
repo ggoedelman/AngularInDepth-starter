@@ -6,8 +6,14 @@ export interface UserSummaryViewModel {
   roles: string[];
 }
 
-// export interface MicrosoftOptions { ... }
-// export interface CredentialsViewModel { ... }
+ export interface MicrosoftOptions {
+  options: string;
+}
+
+ export interface CredentialsViewModel {
+  emailAddress: string;
+  password: string;
+}
 
 export interface Account {
 }

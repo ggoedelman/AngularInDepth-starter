@@ -34,7 +34,7 @@ import { Component } from '@angular/core';
             _ => { // _ is an error
               // uh oh!! check the errors, likely a bad token, or a config issue
               this.loading = false;
-              this.accountService.logout({navigate: false});
+              this.accountService.logout();
               this.snackBar.open('Verification Failed. Try to login with another account.', '', { duration: 10000 });
               this.router.navigate(['./account/login']);
             }
