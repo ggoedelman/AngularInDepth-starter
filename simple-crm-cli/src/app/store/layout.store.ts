@@ -1,4 +1,4 @@
-import { Action, createAction, createReducer, on } from "@ngrx/store";
+import { Action, createAction, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
 
 export interface LayoutState {
   showSidenav: boolean;
@@ -27,4 +27,9 @@ export function layoutReducer(state: LayoutState, action: Action) {
   return rawLayoutReducer(state, action);
 }
 
+const getLayoutFeature = createFeatureSelector<LayoutState>(layoutFeatureKey);
 
+export const selectShowSideNav = createSelector(
+  getLayoutFeature,
+  (state: LayoutState) => state.showSidenav
+);
