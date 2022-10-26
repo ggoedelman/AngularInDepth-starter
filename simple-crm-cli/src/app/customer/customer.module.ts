@@ -22,6 +22,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { StatusIconPipe } from './status-icon.pipe';
 import { MatListModule } from '@angular/material/list';
 import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-customer-list-page.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CustomerStoreEffects } from './store/customer.store.effects';
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-custo
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    EffectsModule.forFeature([CustomerStoreEffects])
   ],
   providers: [
     {
