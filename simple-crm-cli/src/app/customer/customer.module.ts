@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-customer-list-page.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomerStoreEffects } from './store/customer.store.effects';
+import { CustomerListTableComponent } from './customer-list-table/customer-list-table.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CustomerStoreEffects } from './store/customer.store.effects';
     CustomerCreateDialogComponent,
     CustomerDetailComponent,
     StatusIconPipe,
-    AltCustomerListPageComponent
+    AltCustomerListPageComponent,
+    CustomerListTableComponent
   ],
   imports: [
     CommonModule,

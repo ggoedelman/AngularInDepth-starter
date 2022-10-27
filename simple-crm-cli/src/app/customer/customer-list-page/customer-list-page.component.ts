@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Customer } from '../customer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { CustomerService } from '../customer.service';
@@ -18,7 +18,8 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 @Component({
   selector: 'app-customer-list-page',
   templateUrl: './customer-list-page.component.html',
-  styleUrls: ['./customer-list-page.component.scss']
+  styleUrls: ['./customer-list-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerListPageComponent implements OnInit, OnChanges {
 
@@ -40,9 +41,6 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
       shareReplay(),
     );
     this.reload$.next(this.reload$.value + 1);
-    this.customers$.pipe(takeUntil(this.onDestroy$)).subscribe({
-      next: () => {}
-    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -58,6 +56,7 @@ export class CustomerListPageComponent implements OnInit, OnChanges {
   }
 
   viewDetail(cust: Customer){
+    console.log('parent detail');
     this.router.navigate(['/customers', cust.id]);
   }
 

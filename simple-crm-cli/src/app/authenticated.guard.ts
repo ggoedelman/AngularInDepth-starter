@@ -22,7 +22,7 @@ export class AuthenticatedGuard implements CanActivate {
     return this.accountService.user.pipe(
       map((user: UserSummaryViewModel) => {
         if (user.name === 'Anonymous') {
-          return this.router.createUrlTree(['./account/login']);
+          //return this.router.createUrlTree(['./account/login']);
         }
         // add some role checks, if your app has roles...
         //if (!user || !user.roles || user.roles.length === 0) {
