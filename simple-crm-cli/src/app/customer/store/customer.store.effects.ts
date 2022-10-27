@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
-import { CustomerService } from '../customer.service'
+import { switchMap, map } from 'rxjs';
+import { CustomerService } from '../customer.service';
 import { searchCustomersAction, searchCustomersCompleteAction } from './customer.store';
 
 // ngrx effects that trigger side effects for specific actions.
@@ -12,6 +12,7 @@ export class CustomerStoreEffects {
     private custSvc: CustomerService // <-- this is your service to be called for some actions
   ) { }
 
+  // TODO: add effect functions here
   searchCustomers$ = createEffect(() => this.actions$.pipe(
     ofType(searchCustomersAction),
     switchMap(({criteria}) =>  // <-- NEW, use rxjs, accept action payload
