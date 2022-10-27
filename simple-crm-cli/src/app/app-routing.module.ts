@@ -13,6 +13,10 @@ const routes: Routes = [
     pathMatch: 'full',
     component: NotAuthorizedComponent
   },
+  {
+    path: 'customers',
+    loadChildren: () => import('./customer/customer.module').then(mod => mod.CustomerModule)
+  },
 ];
 
 @NgModule({

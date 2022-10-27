@@ -37,7 +37,6 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CustomerModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
