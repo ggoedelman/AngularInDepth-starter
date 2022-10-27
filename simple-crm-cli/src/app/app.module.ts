@@ -19,6 +19,7 @@ import { SigninGoogleComponent } from './account/signin-google/signin-google.com
 import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-microsoft.component';
 import { StoreModule } from '@ngrx/store';
 import { layoutFeatureKey, layoutReducer } from './store/layout.store';
+import { customerFeatureKey, customerReducer } from './customer/store/customer.store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
@@ -45,6 +46,7 @@ import { EffectsModule } from '@ngrx/effects';
     MatSnackBarModule,
     StoreModule.forRoot({}), // for no global state, use an empty object,  {}.
     StoreModule.forFeature(layoutFeatureKey, layoutReducer),
+    StoreModule.forFeature(customerFeatureKey, customerReducer),
     StoreDevtoolsModule.instrument({
       name: 'Nexul Academy - Simple CRM'
     }),
