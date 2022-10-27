@@ -42,7 +42,6 @@ export class CustomerListTableComponent implements OnInit {
   }
 
   viewDetail(cust: Customer){
-    console.log('child detail');
     this.openCustomer.emit(cust);
   }
 
@@ -59,5 +58,9 @@ export class CustomerListTableComponent implements OnInit {
 
   search(){
     this.reload$.next(this.reload$.value + 1);
+  }
+
+  trackByUserId(index: number, cust: Customer) {
+    return cust.id; // some unique value on the array item
   }
 }
