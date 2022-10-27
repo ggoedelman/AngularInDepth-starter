@@ -3,7 +3,7 @@ import { CustomerState, customerStateAdapter } from "./customer.store.model";
 
 
 const {
-  selectAll,
+  selectAll: selectAllCustomers,
 } = customerStateAdapter.getSelectors();
 
 export const customerFeatureKey = 'customer';
@@ -12,5 +12,5 @@ const getCustomerFeature = createFeatureSelector<CustomerState>(customerFeatureK
 
 export const selectCustomers = createSelector(
   getCustomerFeature,
-  selectAll
+  selectAllCustomers
 );
