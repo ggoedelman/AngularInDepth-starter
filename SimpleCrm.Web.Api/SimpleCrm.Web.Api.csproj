@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>aspnet-SimpleCrm.Web.Api-F90503C1-EA34-4205-B18E-F642FC360617</UserSecretsId>
-	<!--<SpaRoot>..\simple-crm-cli\</SpaRoot>
+	<SpaRoot>..\simple-crm-cli\</SpaRoot>
 	<SpaRootDest>ClientApp\</SpaRootDest>
-	<BuildServerSideRendering>false</BuildServerSideRendering>-->
+	<BuildServerSideRendering>false</BuildServerSideRendering>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,16 +27,16 @@
     <ProjectReference Include="..\SimpleCrm\SimpleCrm.csproj" />
   </ItemGroup>
 
-	<!--<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules')">
+	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition="'$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules')">
 		<Exec Command="node -version" ContinueOnError="true">
 			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
 		</Exec>
 		<Error Condition="$(ErrorCode) != '0'" Text="Node.js is required to build and run this project."></Error>
 		<Message Importance="high" Text="We're restoring Angular project node modules... please wait... " />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-	</Target>-->
+	</Target>
 
-	<!--<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build - -prod" />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr - -prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
@@ -50,6 +50,6 @@
 			</ResolvedFileToPublish>
 
 		</ItemGroup>
-	</Target>-->
+	</Target>
 
 </Project>
