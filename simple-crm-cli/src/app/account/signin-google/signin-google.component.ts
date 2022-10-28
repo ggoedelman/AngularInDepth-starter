@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   import { AccountService } from '../account.service';
 
   @Component({
-    selector: 'pc-signin-microsoft',
+    selector: 'pc-signin-google',
     templateUrl: './signin-google.component.html',
     styleUrls: ['./signin-google.component.scss']
   })

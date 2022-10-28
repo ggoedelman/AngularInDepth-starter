@@ -12,26 +12,23 @@ import { CustomerModule } from './customer/customer.module';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppIconsService } from './appiconsservice.service';
-import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { NotAuthorizedComponent } from './account/not-authorized/not-authorized.component';
 import { LoginComponent } from './account/login/login.component'
 import { RegistrationComponent } from './account/registration/registration.component';
-import { SigninGoogleComponent } from './account/signin-google/signin-google.component';
 import { SigninMicrosoftComponent } from './account/signin-microsoft/signin-microsoft.component';
+import { SigninGoogleComponent } from './account/signin-google/signin-google.component';
 import { StoreModule } from '@ngrx/store';
 import { layoutFeatureKey, layoutReducer } from './store/layout.store';
 import { customerFeatureKey, customerReducer } from './customer/store/customer.store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { AccountModule } from './account/account.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotAuthorizedComponent,
-    LoginComponent,
-    RegistrationComponent,
-    SigninGoogleComponent,
-    SigninMicrosoftComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +47,9 @@ import { EffectsModule } from '@ngrx/effects';
       name: 'Nexul Academy - Simple CRM'
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    AccountModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

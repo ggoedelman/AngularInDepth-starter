@@ -10,6 +10,10 @@ export interface UserSummaryViewModel {
   options: string;
 }
 
+export interface GoogleOptions {
+  options: string;
+}
+
  export interface CredentialsViewModel {
   emailAddress: string;
   password: string;

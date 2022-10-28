@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { map, Observable, pipe } from 'rxjs';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { environment } from 'src/environments/environment';
-import { MicrosoftOptions, UserSummaryViewModel } from './account.models';
+import { GoogleOptions, MicrosoftOptions, UserSummaryViewModel } from './account.models';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +66,12 @@ export class AccountService {
     // TODO: it's up to you to add interface MicrosoftOptions to account.models.ts
     return this.http.get<MicrosoftOptions>(
       this.baseUrl + 'external/microsoft'
+    );
+  }
+
+  public loginGoogleOptions(): Observable<GoogleOptions> {
+    return this.http.get<GoogleOptions>(
+      this.baseUrl + 'external/google'
     );
   }
 
