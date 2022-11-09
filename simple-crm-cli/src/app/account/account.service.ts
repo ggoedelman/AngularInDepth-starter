@@ -12,6 +12,9 @@ import { GoogleOptions, MicrosoftOptions, UserSummaryViewModel } from './account
   providedIn: 'root'
 })
 export class AccountService {
+  static getToken() {
+    return localStorage.getItem('UserSummary');
+  }
   private baseUrl: string;
   private cachedUser = new BehaviorSubject<UserSummaryViewModel>(this.anonymousUser());
   // ^^ UserSummaryViewModel is a new model class to add in 'account.models.ts'

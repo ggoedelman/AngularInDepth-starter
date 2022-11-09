@@ -6,7 +6,6 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerListPageComponent } from './customer-list-page/customer-list-page.component';
 import { MatTableModule } from '@angular/material/table';
 import { CustomerService } from './customer.service';
-import { CustomerMockService } from './customer-mock.service';
 import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -57,7 +56,7 @@ import { CustomerListTableComponent } from './customer-list-table/customer-list-
   providers: [
     {
       provide: CustomerService,
-      useClass: environment.production ? CustomerService : CustomerMockService
+      useClass: CustomerService
     }
   ]
 })

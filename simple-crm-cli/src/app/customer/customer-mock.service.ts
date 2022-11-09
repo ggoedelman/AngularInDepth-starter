@@ -11,7 +11,7 @@ import { AltCustomerListPageComponent } from './alt-customer-list-page/alt-custo
   providedIn: 'root'
 })
 export class CustomerMockService extends CustomerService {
-  customers: Customer[] = [];
+  override customers: Customer[] = [];
 
   constructor(http: HttpClient) {
     super(http);

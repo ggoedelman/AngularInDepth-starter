@@ -25,6 +25,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountModule } from './account/account.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AccountInterceptor } from './account/account-interceptor';
+import { AccountService } from './account/account.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AccountModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AccountInterceptor, // <-- may also be an injection token type
+      useClass: AccountService,
+      multi: true // <- allows for multiple providers of the base type to be configured
+    },
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {
